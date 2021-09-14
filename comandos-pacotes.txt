@@ -1,0 +1,47 @@
+usethis é o pacote que ajuda a fazer pacote.
+
+devtoolsbox
+https://martinctc.github.io/devtoolbox/examples/sjlabelled_summary_report.html
+
+available::available("nome", browse=FALSE)
+
+usethis::create_package("c://github//fco2r")
+
+No arquivo DESCRIPTION, colocar as descrições se necessário
+
+Aquivo R.proj não sobe no github
+
+Agora temos que colocar a licensa do R, uma versão antiga do USETHIS
+ela deve ser a primeira coisa a ser feita
+
+Licenças dis os direitos e deveres
+use_mit_license
+	
+devtools::load_all
+devtools::check()
+
+PASTA R - somente funções que fazer tarefaz pequenas de forma simples e muito bem feita
+função usethis::use_r("enteaspa") ele modifica o arquivo e faz um teste para esse arquivo
+
+a load_all carrega as funções e na PASTA r vamos colocar todas as funções para deixar disponivel para a
+as demais pessoas usarem
+
+não se usa library no pacote, fic muito doido
+entao vamos adicionar o pacote com o usethis::use_package ou use_dev_package
+usethis::use_pipe()
+devtools::document() o pipe pede isso
+
+
+agora vamos envelopar na estrutura de função o codigo, para função
+
+vamos inserir dados no pacote
+agora o negócio fica doido
+
+usethis::use_data() em rda
+
+base : explicação
+o que tem, explicação das colunas essas coisas.
+
+devtools::document() atualiza a pasta de manual (man)
+
+abjutils::scape_unicode para evitar os char especiais
