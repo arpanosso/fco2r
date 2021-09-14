@@ -16,7 +16,7 @@ ela deve ser a primeira coisa a ser feita
 
 Licenças dis os direitos e deveres
 use_mit_license
-	
+
 devtools::load_all
 devtools::check()
 
@@ -45,3 +45,7 @@ o que tem, explicação das colunas essas coisas.
 devtools::document() atualiza a pasta de manual (man)
 
 abjutils::scape_unicode para evitar os char especiais
+
+sempre carregar o pacote, e usar o load_all para usar as funções.
+
+
