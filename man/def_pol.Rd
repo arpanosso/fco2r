@@ -2,26 +2,38 @@
 % Please edit documentation in R/minhas-funcoes.R
 \name{def_pol}
 \alias{def_pol}
-\title{Define se os pontos pertencem a um polígono}
+\title{Define se um ponto pertence um poligono}
 \usage{
 def_pol(x, y, pol)
 }
 \arguments{
-\item{x}{Vetor com a coordenada x do ponto}
+\item{x}{Vetor com a(s) coordenada(s) x de pontos.}
 
-\item{y}{Vetor com a coordenada y do ponto}
+\item{y}{Vetor com a(s) coordenada(s) y de pontos.}
 
-\item{pol}{matriz do polígono}
+\item{pol}{matriz contendo as coordenadas X e Y do poligono em suas colunas.}
 }
 \value{
-o retorno da função será um vetor lógico dizendo que os pontos
-pertencem ou não ao polígono especificado por pol
+retorna um vetor logico com TRUE para os pontos pertencens ao
+poligono.
 }
 \description{
-Verifica para um ou mais pontos se eles se enquadram em um determinado polígono.
+Verifica se um ou mais pontos estao dentro dos limites
+definidos por um determinado poligono.
 }
 \details{
-Função baseada na função point.in.pol do pacote sp, utilizada
-para filtrar os pontos pertencentes aos polígonos dos estados,
-regiões e muicípios do Brasil. Os polígonos são oriundos do pacote geobr.
+Tarefa baseada na funcao \code{point.in.pol} do pacote {\code{sp}},
+utilizada para filtrar os pontos pertencentes aos poligonos dos estados,
+regioes e municipios do Brasil. Os poligonos das regioes sao oriundos do
+pacote {\code{geobr}}.
+}
+\examples{
+x <- 0:10
+y <- x*2
+poligono <- matrix(c(4.5,4.5,7.5,7.5,4.5,5,15,15,5,5),
+                   ncol = 2)
+vetor_logico <- def_pol(x,y, poligono)
+plot(x,y, col=ifelse(vetor_logico,"red","blue"),
+     pch=ifelse(vetor_logico,15,0))
+points(poligono, typ="l")
 }
