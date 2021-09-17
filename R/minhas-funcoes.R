@@ -1,22 +1,18 @@
-#' @title Define se um ponto pertence um poligono
+#' @title Define se um ponto pertence a um polígono
 #'
 #' @name def_pol
 #'
 #' @description Verifica se um ou mais pontos estao dentro dos limites
-#' definidos por um determinado poligono.
+#' definidos por um determinado polígono.
 #'
 #' @param x Vetor com a(s) coordenada(s) x de pontos.
 #' @param y Vetor com a(s) coordenada(s) y de pontos.
-#' @param pol matriz contendo as coordenadas X e Y do poligono em suas colunas.
+#' @param pol matriz contendo as coordenadas X e Y do polígono em suas colunas.
 #'
 #'
-#' @details Tarefa baseada na funcao `point.in.pol` do pacote {`sp`},
-#' utilizada para filtrar os pontos pertencentes aos poligonos dos estados,
-#' regioes e municipios do Brasil. Os poligonos das regioes sao oriundos do
-#' pacote {`geobr`}.
+#' @details Tarefa baseada na função `point.in.pol` do pacote {`sp`}, utilizada para filtrar os pontos pertencentes aos polígonos dos estados, regiões e municípios do Brasil. Os polígonos das regiões são oriundos do pacote {`geobr`}.
 #'
-#' @return retorna um vetor logico com TRUE para os pontos pertencens ao
-#' poligono.
+#' @return retorna um vetor lógico com TRUE para os pontos pertencens ao polígono.
 #'
 #' @export
 #' @examples

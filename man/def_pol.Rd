@@ -2,7 +2,7 @@
 % Please edit documentation in R/minhas-funcoes.R
 \name{def_pol}
 \alias{def_pol}
-\title{Define se um ponto pertence um poligono}
+\title{Define se um ponto pertence a um polígono}
 \usage{
 def_pol(x, y, pol)
 }
@@ -11,21 +11,17 @@ def_pol(x, y, pol)
 
 \item{y}{Vetor com a(s) coordenada(s) y de pontos.}
 
-\item{pol}{matriz contendo as coordenadas X e Y do poligono em suas colunas.}
+\item{pol}{matriz contendo as coordenadas X e Y do polígono em suas colunas.}
 }
 \value{
-retorna um vetor logico com TRUE para os pontos pertencens ao
-poligono.
+retorna um vetor lógico com TRUE para os pontos pertencens ao polígono.
 }
 \description{
 Verifica se um ou mais pontos estao dentro dos limites
-definidos por um determinado poligono.
+definidos por um determinado polígono.
 }
 \details{
-Tarefa baseada na funcao \code{point.in.pol} do pacote {\code{sp}},
-utilizada para filtrar os pontos pertencentes aos poligonos dos estados,
-regioes e municipios do Brasil. Os poligonos das regioes sao oriundos do
-pacote {\code{geobr}}.
+Tarefa baseada na função \code{point.in.pol} do pacote {\code{sp}}, utilizada para filtrar os pontos pertencentes aos polígonos dos estados, regiões e municípios do Brasil. Os polígonos das regiões são oriundos do pacote {\code{geobr}}.
 }
 \examples{
 x <- 0:10
