@@ -5,7 +5,7 @@
 \alias{oco2_br}
 \title{Dados de dioxido de carbono atmosferico para o Brasil}
 \format{
-Uma tibble, contendo 361615 linhas e colunas 11
+Uma tibble, contendo 146646 linhas e colunas 11
 \describe{
 \item{longitude}{coordenada geográfica que especifica a posição leste-oeste de um ponto na superfície da Terra}
 \item{longitude_bnds}{são, respectivamente, os limites superior e inferior da coordenada, onde a longitude para um ponto foi dada pela média desses limites}
