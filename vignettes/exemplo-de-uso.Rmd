@@ -1,0 +1,28 @@
+---
+title: "exemplo-de-uso"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{exemplo-de-uso}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(fco2r)
+dplyr::glimpse(oco2_br)
+```
+
+```{r}
+oco2_br |> 
+  dplyr::sample_n(2000) |> 
+  ggplot2::ggplot(ggplot2::aes(x=longitude, y=latitude)) +
+  ggplot2::geom_point(color="red", alpha=0.2)
+```
+
