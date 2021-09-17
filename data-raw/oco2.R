@@ -2,7 +2,7 @@
 oco2_br <- readr::read_rds("C://GitHub//fco2r//data-raw//oco2_br.rds")
 dplyr::glimpse(oco2)
 
-oco2 |>
+oco2_br |>
   dplyr::sample_n(20000) |>
   ggplot2::ggplot(ggplot2::aes(x=longitude, y=latitude)) +
   ggplot2::geom_point()
