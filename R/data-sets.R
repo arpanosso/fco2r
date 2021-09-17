@@ -19,4 +19,4 @@
 #' }
 #' @source \url{https://co2.jpl.nasa.gov/}
 #'
-"oco2"
+"oco2_br"
