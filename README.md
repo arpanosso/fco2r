@@ -33,29 +33,29 @@ library(fco2r)
 ## basic example code
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
-
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+oco2_br <- readr::read_rds("C://GitHub//fco2r//data-raw//oco2_br.rds")
+dplyr::glimpse(oco2_br)
+#> Rows: 146,646
+#> Columns: 11
+#> $ longitude                              <dbl> -70.33963, -70.33963, -70.33963~
+#> $ longitude_bnds                         <chr> "-70.4644097222:-70.21484375", ~
+#> $ latitude                               <dbl> -5.806417, -5.557240, -5.058887~
+#> $ latitude_bnds                          <chr> "-5.93100534001:-5.68182872924"~
+#> $ time_yyyymmddhhmmss                    <dbl> 2.014092e+13, 2.014092e+13, 2.0~
+#> $ time_bnds_yyyymmddhhmmss               <chr> "20140915000000:20140916000000"~
+#> $ altitude_km                            <dbl> 3307.8, 3307.8, 3307.8, 3307.8,~
+#> $ alt_bnds_km                            <chr> "0.0:6615.59960938", "0.0:6615.~
+#> $ fluorescence_offset_relative_771nm_idp <dbl> 0.0167236, 0.0187703, 0.0167454~
+#> $ fluorescence_offset_relative_757nm_idp <dbl> 0.01495360, 0.01348060, 0.01151~
+#> $ xco2_moles_mole_1                      <dbl> 0.000391583, 0.000394184, 0.000~
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this. You could also
-use GitHub Actions to re-render `README.Rmd` every time you push. An
-example workflow can be found here:
-<https://github.com/r-lib/actions/tree/master/examples>.
+``` r
+oco2_br |>
+  dplyr::sample_n(20000) |>
+  ggplot2::ggplot(ggplot2::aes(x=longitude, y=latitude)) +
+  ggplot2::geom_point()
+```
 
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
