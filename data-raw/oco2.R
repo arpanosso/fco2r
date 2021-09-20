@@ -46,3 +46,58 @@ oco2 <- oco2 |>
 
 
 readr::write_rds(oco2,"data-raw/oco2_br.rds")
+
+
+
+
+
+
+
+# protótipo do Wbescrape
+
+url <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt"
+co2_nooa <- read.table(url, skip = 49, h=FALSE)
+co2_nooa |> names() <- c("year","month","day","decimal",
+                         "CO2_ppm","n_days","year_ago_1","years_ago_10","since_1800")
+
+
+names(co2_nooa)
+
+co2_nooa <- co2_nooa |>
+  dplyr::mutate(
+    date = lubridate::make_date(year = year, month = month, day = day)
+  )
+dplyr::glimpse(co2_nooa)
+co2_nooa |>
+  dplyr::filter(year >= 2015, year <=2020) |>
+  dplyr::mutate(dia = difftime(date,"2014-01-09", units = "days")) |>
+  ggplot2::ggplot(ggplot2::aes(x=dia, y=CO2_ppm)) +
+  ggplot2::geom_point(shape=21,color="black",fill="gray") +
+  ggplot2::geom_line(color="red") +
+  ggplot2::geom_smooth(method = "lm") +
+  ggpubr::stat_regline_equation(ggplot2::aes(
+    label =  paste(..eq.label.., ..rr.label.., sep = "*plain(\",\")~~"))) +
+  ggplot2::theme_bw()
+
+library(tidyverse)
+atualizar_dados_nooa() %>%
+  dplyr::filter(CO2_ppm >= 0) %>%
+  ggplot2::ggplot(ggplot2::aes(x= decimal, y=CO2_ppm)) +
+  ggplot2::geom_line(color="red") +
+  ggplot2::theme_minimal()
+
+
+url <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt"
+df <- readr::read_table(url, col_names = TRUE) |>
+  janitor::clean_names() |>
+  dplyr::filter(!stringr::str_detect(number, "#")) |>
+  dplyr::select(x) |>
+  dplyr::mutate(
+    x = stringr::str_squish(x)
+  ) |> dplyr::pull(x) |>
+  stringr::str_split(" ",simplify = TRUE) |>
+  tibble::as_tibble() |>
+  dplyr::mutate_if(is.character,as.numeric)
+
+dplyr::glimpse(df)
+
