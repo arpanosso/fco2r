@@ -155,8 +155,18 @@
 #&gt; <span class='message'>cols(</span>
 #&gt; <span class='message'>  `#` = <span style='color: #BB0000;'>col_character()</span>,</span>
 #&gt; <span class='message'>  `--------------------------------------------------------------------` = <span style='color: #BB0000;'>col_character()</span></span>
-#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span>
-#&gt; <span class='warning'>Using compatibility `.name_repair`.</span></div><div class='img'><img src='atualizar_dados_nooa-1.png' alt='' width='700' height='433' /></div></pre>
+#&gt; <span class='message'>)</span></div><div class='output co'>#&gt; <span class='warning'>Warning: 2506 parsing failures.</span>
+#&gt; <span class='warning'>row col  expected     actual                                                              file</span>
+#&gt; <span class='warning'>  1  -- 2 columns 6 columns  'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt'</span>
+#&gt; <span class='warning'>  3  -- 2 columns 12 columns 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt'</span>
+#&gt; <span class='warning'>  4  -- 2 columns 10 columns 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt'</span>
+#&gt; <span class='warning'>  5  -- 2 columns 10 columns 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt'</span>
+#&gt; <span class='warning'>  6  -- 2 columns 10 columns 'https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt'</span>
+#&gt; <span class='warning'>... ... ......... .......... .................................................................</span>
+#&gt; <span class='warning'>See problems(...) for more details.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: The `x` argument of `as_tibble.matrix()` must have unique column names if `.name_repair` is omitted as of tibble 2.0.0.</span>
+#&gt; <span class='warning'>Using compatibility `.name_repair`.</span></div><div class='output co'>#&gt; <span class='error'>Error: Problem with `filter()` input `..1`.</span>
+#&gt; <span class='error'><span style='color: #0000BB;'>i</span> Input `..1` is `CO2_ppm &gt;= 0`.</span>
+#&gt; <span class='error'><span style='color: #BB0000;'>x</span> objeto 'CO2_ppm' não encontrado</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
