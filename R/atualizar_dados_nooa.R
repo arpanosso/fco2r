@@ -16,7 +16,7 @@
 #'   ggplot2::theme_minimal()
 atualizar_dados_nooa <- function(){
   url <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt"
-  df <- read.table(url)
+  df <- utils::read.table(url)
   names(df) <- c("year", "month", "day",
                 "decimal", "CO2_ppm", "n_days",
                 "year_ago_1", "years_ago_10", "since_1800")
