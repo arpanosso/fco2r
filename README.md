@@ -6,19 +6,13 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-O objetivo desse pacote é divugar os dados de concentração de
+O objetivo desse pacote é divulgar os dados de concentração de
 CO<sub>2</sub> atmosférico disponível no site da NASA, e NOOA.
 
 ## Installation
 
-You can install the released version of fco2r from
-[CRAN](https://CRAN.R-project.org) with:
-
-``` r
-install.packages("fco2r")
-```
-
-And the development version from [GitHub](https://github.com/) with:
+You can install the development version of fco2r from
+[GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")

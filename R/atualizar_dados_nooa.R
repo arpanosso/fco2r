@@ -6,14 +6,7 @@
 #' @export
 #'
 #' @examples
-#' library(dplyr)
-#' library(ggplot2)
-#' library(magrittr)
-#' atualizar_dados_nooa() %>%
-#' dplyr::filter(CO2_ppm >= 0) %>%
-#'   ggplot2::ggplot(ggplot2::aes(x= decimal, y=CO2_ppm)) +
-#'   ggplot2::geom_line(color="red") +
-#'   ggplot2::theme_minimal()
+#' atualizar_dados_nooa()
 atualizar_dados_nooa <- function(){
   url <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt"
   df <- utils::read.table(url)

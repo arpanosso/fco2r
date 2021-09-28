@@ -10,7 +10,7 @@
 #' @param pol matriz contendo as coordenadas X e Y do polígono em suas colunas.
 #'
 #'
-#' @details Tarefa baseada na função `point.in.pol` do pacote {`sp`}, utilizada para filtrar os pontos pertencentes aos polígonos dos estados, regiões e municípios do Brasil. Os polígonos das regiões são oriundos do pacote {`geobr`}.
+#' @details Tarefa baseada na função `point.in.pol` do pacote {`sp`}, utilizada para filtrar os pontos pertencentes aos polígono dos estados, região e municípioa do Brasil. Os polígonos das regiões são oriundos do pacote {`geobr`}.
 #'
 #' @return retorna um vetor lógico com TRUE para os pontos pertencens ao polígono.
 #'

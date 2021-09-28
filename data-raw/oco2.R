@@ -1,5 +1,5 @@
 ## code to prepare `oco2` dataset goes here
-oco2_br <- readr::read_rds("C://GitHub//fco2r//data-raw//oco2_br.rds")
+oco2_br <- readr::read_rds("data-raw//oco2_br.rds")
 dplyr::glimpse(oco2)
 
 oco2_br |>

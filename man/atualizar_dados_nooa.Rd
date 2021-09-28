@@ -13,12 +13,5 @@ Um data.frame
 Busca os dados em https://gml.noaa.gov/ccgg/trends/data.html para Média semanal de CO2 de Mauna Loa e comparações históricas (CSV).
 }
 \examples{
-library(dplyr)
-library(ggplot2)
-library(magrittr)
-atualizar_dados_nooa() \%>\%
-dplyr::filter(CO2_ppm >= 0) \%>\%
-  ggplot2::ggplot(ggplot2::aes(x= decimal, y=CO2_ppm)) +
-  ggplot2::geom_line(color="red") +
-  ggplot2::theme_minimal()
+atualizar_dados_nooa()
 }

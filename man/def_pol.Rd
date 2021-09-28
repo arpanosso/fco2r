@@ -21,7 +21,7 @@ Verifica se um ou mais pontos estao dentro dos limites
 definidos por um determinado polígono.
 }
 \details{
-Tarefa baseada na função \code{point.in.pol} do pacote {\code{sp}}, utilizada para filtrar os pontos pertencentes aos polígonos dos estados, regiões e municípios do Brasil. Os polígonos das regiões são oriundos do pacote {\code{geobr}}.
+Tarefa baseada na função \code{point.in.pol} do pacote {\code{sp}}, utilizada para filtrar os pontos pertencentes aos polígono dos estados, região e municípioa do Brasil. Os polígonos das regiões são oriundos do pacote {\code{geobr}}.
 }
 \examples{
 x <- 0:10
