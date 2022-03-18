@@ -101,3 +101,11 @@ df <- readr::read_table(url, col_names = TRUE) |>
 
 dplyr::glimpse(df)
 
+#### Vamos mexer nos dados de FCO2 do solo
+data_set <- read.table("data-raw/Banco_dados_TESE.txt",
+                       h=TRUE,
+                       sep="\t",
+                       na.strings = "NA")
+dplyr::glimpse(data_set)
+data_fco2 <- data_set
+
