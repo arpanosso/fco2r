@@ -7,7 +7,11 @@
 \format{
 Uma tibble, contendo 15397 linhas e 39 colunas
 \describe{
-\item{experimento}{descrição}
+\item{experimento}{Nos experimentos classificados como \emph{Espacial} uma malha
+amostral foi instalada em campo como o objetivo de avaliar a variabilidade espacial
+dos atributos do solo por meio de técnicas geoestatísticas; nos experimentos classificados
+como \strong{Temporais}, a respiração do solo foi avaliada em diferentes tratamentos (usos do solo,
+manejos ou preparos)}
 \item{data}{descrição}
 \item{preparo_solo}{descrição}
 \item{tratamento}{descrição}
@@ -24,7 +28,8 @@ Uma tibble, contendo 15397 linhas e 39 colunas
 \item{municipio}{descrição}
 \item{ID}{descrição}
 \item{prof}{descrição}
-\item{FCO2}{descrição}
+\item{FCO2}{\eqn{\mu mol \; CO_2 m^{-2}}
+}
 \item{Ts}{descrição}
 \item{Us}{descrição}
 \item{pH}{descrição}
