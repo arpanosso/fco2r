@@ -107,5 +107,21 @@ data_set <- read.table("data-raw/Banco_dados_TESE.txt",
                        sep="\t",
                        na.strings = "NA")
 dplyr::glimpse(data_set)
-data_fco2 <- data_set
 
+data_set <- data_set %>%
+  dplyr::mutate(data =  lubridate::as_date(data, format = "%d/%m/%Y"),
+         data_preparo  =  lubridate::as_date(data_preparo , format = "%d/%m/%Y"),
+         conversao  =  lubridate::as_date(conversao , format = "%d/%m/%Y"),
+         tratamento = ifelse(tratamento == "EUCA","EU",tratamento),
+         revolvimento_solo = revolvimento_solo == "sim",
+         cobertura = cobertura != "descoberto",
+         manejo = ifelse(manejo=="Minimo" | manejo == "M?nimo", "minimo",manejo),
+         manejo = ifelse(manejo=="SP", "sem_preparo",manejo),
+         manejo = ifelse(manejo=="Convencional", "convencional",manejo),
+         manejo = ifelse(manejo=="pasto", "pasto_degradado",manejo),
+         cultura = ifelse(cultura == "feij?o","feijao",
+                          ifelse(cultura =="cana-de-a??car","cana-de-acucar",cultura)))
+dplyr::glimpse(data_set)
+data_fco2 <- data_set
+data_fco2$manejo %>% unique()
+# usethis::use_data(data_fco2, overwrite = TRUE)

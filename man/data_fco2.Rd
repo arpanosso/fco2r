@@ -7,50 +7,53 @@
 \format{
 Uma tibble, contendo 15397 linhas e 39 colunas
 \describe{
-\item{experimento}{Nos experimentos classificados como \emph{Espacial} uma malha
-amostral foi instalada em campo como o objetivo de avaliar a variabilidade espacial
-dos atributos do solo por meio de técnicas geoestatísticas; nos experimentos classificados
-como \strong{Temporais}, a respiração do solo foi avaliada em diferentes tratamentos (usos do solo,
-manejos ou preparos)}
-\item{data}{descrição}
-\item{preparo_solo}{descrição}
-\item{tratamento}{descrição}
-\item{revolvimento_solo}{descrição}
-\item{data_preparo}{descrição}
-\item{conversao}{descrição}
-\item{cobertura}{descrição}
-\item{cultura}{descrição}
-\item{x}{descrição}
-\item{y}{descrição}
-\item{longitude_muni}{descrição}
-\item{latitude_muni}{descrição}
-\item{estado}{descrição}
-\item{municipio}{descrição}
-\item{ID}{descrição}
-\item{prof}{descrição}
-\item{FCO2}{\eqn{\mu mol \; CO_2 m^{-2}}
+\item{experimento}{A classificação  \strong{Espacial} refere-se a experimentos nos quais uma malha
+amostral foi instalada como o objetivo de avaliar a variabilidade espacial
+da emissão de \eqn{CO_2} e atributos do solo relacionados por meio de técnicas geoestatísticas. Nos ensaios classificados com
+\strong{Temporal}, a respiração do solo foi avaliada em diferentes tratamentos (usos,
+manejos ou preparo do solo).}
+\item{data}{Data da realização da avaliação em questão.}
+\item{manejo}{Manejo ou preparo do solo ou uso da terra que a parcela experimental foi submetida.}
+\item{tratamento}{Especificação a respeito do manejo/preparo/uso: AD (arado de disco);
+E (escarificador); GN ou gn (grade niveladora); GA (grade aradora); CQ (cana queimada);
+CC (cana crua); PD (plantio direto); EU (eucalipto); MT (mata ciliar); MN (mata natural);
+PI (pinus); SI (silvipastoril); PDr (pastagem degradada) e PR (pastagem reformada).}
+\item{revolvimento_solo}{Variável lógica indicando se houve revolvimento do solo previamente à condução do ensaio em questão.}
+\item{data_preparo}{Data em que ocorreu o revolvimento do solo, se verdadeiro.}
+\item{conversao}{Data em que a área foi convertidada de vegetação natural para o uso agrícola.}
+\item{cobertura}{Variável lógica indicando se no momento de availação o solo encontrava-se com cobertura superficial.}
+\item{cultura}{Cultura agrícola, florestal ou natural a que se destina a área.}
+\item{x}{coordenada X relativa à parcela ou malha amostral específica.}
+\item{y}{coordenada Y relativa à parcela ou malha amostral específica.}
+\item{longitude_muni}{Coordenada referente ao município no qual o experimento foi conduzido.}
+\item{latitude_muni}{Coordenada referente ao município no qual o experimento foi conduzido.}
+\item{estado}{Unidade federativa do município.}
+\item{municipio}{Cidade/município onde o experiemnto foi realizado.}
+\item{ID}{Identificação do ponto amostral dentro do ensaio específico.}
+\item{prof}{profunidade de coleta do atributo.}
+\item{FCO2}{Emissão de \eqn{CO_2} do solo em \eqn{\mu mol\;m^{-2}\; s^{-1}}
 }
-\item{Ts}{descrição}
-\item{Us}{descrição}
-\item{pH}{descrição}
-\item{MO}{descrição}
-\item{P}{descrição}
-\item{K}{descrição}
-\item{Ca}{descrição}
-\item{Mg}{descrição}
-\item{H_Al}{descrição}
-\item{SB}{descrição}
-\item{CTC}{descrição}
-\item{V}{descrição}
-\item{Ds}{descrição}
-\item{Macro}{descrição}
-\item{Micro}{descrição}
-\item{VTP}{descrição}
-\item{PLA}{descrição}
-\item{AT}{descrição}
-\item{SILTE}{descrição}
-\item{ARG}{descrição}
-\item{HLIFS}{descrição}
+\item{Ts}{Temperatura do solo em \eqn{^{o}C}.}
+\item{Us}{Umidade do solo em \eqn{\%}.}
+\item{pH}{Potencial hidrogeniônico da solução do solo.}
+\item{MO}{Teor de matéria orgânica do solo em \eqn{g \; dm^{-3}}.}
+\item{P}{Teor de Fósforo disponível do solo em \eqn{mg \; dm^{-3}}.}
+\item{K}{Teor de Potássio do solo em \eqn{mmol_c \; dm^{-3}}.}
+\item{Ca}{Teor de Cálcio do solo em \eqn{mmol_c \; dm^{-3}}.}
+\item{Mg}{Teor de Magnésio do solo em \eqn{mmol_c \; dm^{-3}}.}
+\item{H_Al}{Teor de H+Al do solo em \eqn{mmol_c \; dm^{-3}}.}
+\item{SB}{Soma de bases do solo em \eqn{mmol_c \; dm^{-3}}.}
+\item{CTC}{Capacidade de troca caiônica do soloem \eqn{mmol_c \; dm^{-3}}.}
+\item{V}{Saturação por bases do solo em \eqn{\%}.}
+\item{Ds}{Densidade do solo em \eqn{g \; cm^{-3}}.}
+\item{Macro}{Macroporosidade do solo em \eqn{m^{3}m^{-3}}.}
+\item{Micro}{Microporosidade do solo em \eqn{m^{3}m^{-3}}.}
+\item{VTP}{Volume total de poros do solo em \eqn{m^{3}m^{-3}}.}
+\item{PLA}{Porosidade livre de água do solo em \eqn{\%}.}
+\item{AT}{Teor de areia total do solo em \eqn{g \; kg^{-1}}.}
+\item{SILTE}{Teor de silte do solo em \eqn{g \; kg^{-1}}.}
+\item{ARG}{Teor de argila do solo em \eqn{g \; kg^{-1}}.}
+\item{HLIFS}{Grau de humificação da matéria orgânica do solo em unidade arbitrária}
 }
 }
 \source{
