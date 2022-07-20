@@ -1,5 +1,155 @@
+## tratar o oco2.rds para transformar no oco2_br.rds
+oco2 <- readr::read_rds("data-raw/oco2.rds")
+oco2<-oco2 |>
+  janitor::clean_names() |>
+  dplyr::mutate(
+    xco2 = xco2_moles_mole_1*1e06,
+    data = lubridate::ymd_hms(time_yyyymmddhhmmss),
+    ano = lubridate::year(data),
+    mes = lubridate::month(data),
+    dia = lubridate::day(data),
+    dia_semana = lubridate::wday(data))
+
+
+oco2 |>
+  dplyr::sample_n(1000) |>
+  ggplot2::ggplot(ggplot2::aes(x=data,y=xco2)) +
+  ggplot2::geom_point(color="blue") +
+  ggplot2::geom_line(color="red")
+
+oco2 |>
+  dplyr::arrange(data) |>
+  dplyr::mutate(x= 1:nrow(oco2)) |>
+  ggplot2::ggplot(ggplot2::aes(x=x,y=xco2)) +
+  ggplot2::geom_point(shape=21,color="black",fill="gray") +
+  ggplot2::geom_smooth(method = "lm") +
+  ggpubr::stat_regline_equation(ggplot2::aes(
+    label =  paste(..eq.label.., ..rr.label.., sep = "*plain(\",\")~~")))
+
+d_aux<-oco2 |>
+  dplyr::arrange(data) |>
+  dplyr::mutate(x= 1:nrow(oco2)) |>
+  dplyr::select(x,xco2)
+mod <- lm(d_aux$xco2~d_aux$x)
+summary.lm(mod)
+a<-mod$coefficients[1]
+b<-mod$coefficients[2]
+
+oco2 <- oco2 |>
+  dplyr::arrange(data) |>
+  dplyr::mutate(
+    x= 1:nrow(oco2),
+    xco2_est = a + b * x,
+    delta = xco2_est - xco2,
+    XCO2 = (a-delta) - (mean(xco2) - a)
+  )
+dplyr::glimpse(oco2)
+
+oco2 |>
+  dplyr::filter(ano == 2014) |>
+  ggplot2::ggplot(ggplot2::aes(x=longitude, y=latitude, color=dia_semana)) +
+  ggplot2::geom_point()
+
+regiao <- geobr::read_region(showProgress = FALSE)
+br <- geobr::read_country(showProgress = FALSE)
+
+### Polígono Brasil
+pol_br <- br$geom |> purrr::pluck(1) |> as.matrix()
+
+### Polígonos das Regiões
+pol_norte <- regiao$geom |> purrr::pluck(1) |> as.matrix()
+pol_nordeste <- regiao$geom |> purrr::pluck(2) |> as.matrix()
+pol_sudeste <- regiao$geom |> purrr::pluck(3) |> as.matrix()
+pol_sul <- regiao$geom |> purrr::pluck(4) |> as.matrix()
+pol_centroeste<- regiao$geom |> purrr::pluck(5) |> as.matrix()
+
+source("r/graficos.R")
+
+br |>
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(fill="#2D3E50", color="#FEBF57",
+                   size=.15, show.legend = FALSE)+
+  ggplot2::geom_point(data=oco2 |>
+                        dplyr::filter(ano == 2014) |>
+                        dplyr::sample_n(1000) ,
+                      ggplot2::aes(x=longitude,y=latitude),
+                      shape=3,
+                      col="red",
+                      alpha=0.2)
+
+
+def_pol <- function(x, y, pol){
+  as.logical(sp::point.in.polygon(point.x = x,
+                                  point.y = y,
+                                  pol.x = pol[,1],
+                                  pol.y = pol[,2]))
+}
+
+oco2 <- oco2 |>
+  dplyr::mutate(
+    flag_br = def_pol(longitude, latitude, pol_br),
+    flag_norte = def_pol(longitude, latitude, pol_norte),
+    flag_nordeste = def_pol(longitude, latitude, pol_nordeste),
+    flag_sul = def_pol(longitude, latitude, pol_sul),
+    flag_sudeste = def_pol(longitude, latitude, pol_sudeste),
+    flag_centroeste = def_pol(longitude, latitude, pol_centroeste)
+  )
+dplyr::glimpse(oco2)
+
+
+br |>
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(fill="#2D3E50", color="#FEBF57",
+                   size=.15, show.legend = FALSE)+
+  tema_mapa() +
+  ggplot2::geom_point(data=oco2 |> dplyr::filter(flag_br, ano == 2014) ,
+                      ggplot2::aes(x=longitude,y=latitude),
+                      shape=3,
+                      col="red",
+                      alpha=0.2)
+
+
+
+
+# Retirando alguns pontos
+pol_br <- pol_br[pol_br[,1]<=-34,]
+pol_br <- pol_br[!((pol_br[,1]>=-38.8 & pol_br[,1]<=-38.6) &
+                     (pol_br[,2]>= -19 & pol_br[,2]<= -16)),]
+
+pol_nordeste <- pol_nordeste[pol_nordeste[,1]<=-34,]
+pol_nordeste <- pol_nordeste[!((pol_nordeste[,1]>=-38.7 & pol_nordeste[,1]<=-38.6) & pol_nordeste[,2]<= -15),]
+
+
+
+# Recriando o flag_nordeste
+oco2 <- oco2 |>
+  dplyr::mutate(
+    flag_br = def_pol(longitude, latitude, pol_br),
+    flag_nordeste = def_pol(longitude, latitude, pol_nordeste)
+  )
+
+# Plot do mapa e os pontos
+br |>
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(fill="#2D3E50", color="#FEBF57",
+                   size=.15, show.legend = FALSE)+
+  tema_mapa() +
+  ggplot2::geom_point(data=oco2 |>
+                        dplyr::filter(flag_br|flag_nordeste, ano == 2014),
+                      ggplot2::aes(x=longitude,y=latitude),
+                      shape=3,
+                      col="red",
+                      alpha=0.2)
+
+
+oco2_br <- oco2 |>
+  dplyr::filter( flag_br | flag_nordeste ) |>
+  dplyr::select(-flag_br)
+readr::write_rds(oco2_br,"data-raw/oco2_br.rds")
+save(oco2_br, file = "data/oco2_br.rda")
+
 ## code to prepare `oco2` dataset goes here
-oco2_br <- readr::read_rds("data-raw//oco2_br.rds")
+oco2_br <- readr::read_rds("data-raw//oco2_br_novo.rds")
 dplyr::glimpse(oco2)
 
 oco2_br |>
