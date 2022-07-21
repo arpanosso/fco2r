@@ -3,7 +3,7 @@
 #' Base de dados contendo informações sobre frações molares médias de coluna
 #' de ar seco de dióxido de carbono (XCO2) no período de 2015 a 2020.
 #'
-#' @format Uma tibble, contendo 146646 linhas e 11 colunas
+#' @format Uma tibble, contendo 37387 linhas e 18 colunas
 #' \describe{
 #'    \item{longitude}{coordenada geográfica que especifica a posição leste-oeste de um ponto na superfície da Terra}
 #'    \item{longitude_bnds}{são, respectivamente, os limites superior e inferior da coordenada, onde a longitude para um ponto foi dada pela média desses limites}

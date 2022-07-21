@@ -1,5 +1,7 @@
 ## tratar o oco2.rds para transformar no oco2_br.rds
 oco2 <- readr::read_rds("data-raw/oco2.rds")
+
+## criando as colunas para posterior filtragem
 oco2<-oco2 |>
   janitor::clean_names() |>
   dplyr::mutate(
@@ -10,21 +12,22 @@ oco2<-oco2 |>
     dia = lubridate::day(data),
     dia_semana = lubridate::wday(data))
 
-
+## graficando
 oco2 |>
   dplyr::sample_n(1000) |>
   ggplot2::ggplot(ggplot2::aes(x=data,y=xco2)) +
   ggplot2::geom_point(color="blue") +
   ggplot2::geom_line(color="red")
 
-oco2 |>
-  dplyr::arrange(data) |>
-  dplyr::mutate(x= 1:nrow(oco2)) |>
-  ggplot2::ggplot(ggplot2::aes(x=x,y=xco2)) +
-  ggplot2::geom_point(shape=21,color="black",fill="gray") +
-  ggplot2::geom_smooth(method = "lm") +
-  ggpubr::stat_regline_equation(ggplot2::aes(
-    label =  paste(..eq.label.., ..rr.label.., sep = "*plain(\",\")~~")))
+##
+# oco2 |>
+#   dplyr::arrange(data) |>
+#   dplyr::mutate(x= 1:nrow(oco2)) |>
+#   ggplot2::ggplot(ggplot2::aes(x=x,y=xco2)) +
+#   ggplot2::geom_point(shape=21,color="black",fill="gray") +
+#   ggplot2::geom_smooth(method = "lm") +
+#   ggpubr::stat_regline_equation(ggplot2::aes(
+#     label =  paste(..eq.label.., ..rr.label.., sep = "*plain(\",\")~~")))
 
 d_aux<-oco2 |>
   dplyr::arrange(data) |>
@@ -35,6 +38,7 @@ summary.lm(mod)
 a<-mod$coefficients[1]
 b<-mod$coefficients[2]
 
+## Retiradno a tendencia dos dados originais
 oco2 <- oco2 |>
   dplyr::arrange(data) |>
   dplyr::mutate(
@@ -45,11 +49,13 @@ oco2 <- oco2 |>
   )
 dplyr::glimpse(oco2)
 
+## mapenando todos os pontos
 oco2 |>
   dplyr::filter(ano == 2014) |>
   ggplot2::ggplot(ggplot2::aes(x=longitude, y=latitude, color=dia_semana)) +
   ggplot2::geom_point()
 
+## criando a mascára a partir do geobr
 regiao <- geobr::read_region(showProgress = FALSE)
 br <- geobr::read_country(showProgress = FALSE)
 
@@ -85,6 +91,8 @@ def_pol <- function(x, y, pol){
                                   pol.y = pol[,2]))
 }
 
+
+## Criando a flag para cada região
 oco2 <- oco2 |>
   dplyr::mutate(
     flag_br = def_pol(longitude, latitude, pol_br),
@@ -96,7 +104,7 @@ oco2 <- oco2 |>
   )
 dplyr::glimpse(oco2)
 
-
+## mapeando e observando o erro
 br |>
   ggplot2::ggplot() +
   ggplot2::geom_sf(fill="#2D3E50", color="#FEBF57",
@@ -108,9 +116,6 @@ br |>
                       col="red",
                       alpha=0.2)
 
-
-
-
 # Retirando alguns pontos
 pol_br <- pol_br[pol_br[,1]<=-34,]
 pol_br <- pol_br[!((pol_br[,1]>=-38.8 & pol_br[,1]<=-38.6) &
@@ -118,8 +123,6 @@ pol_br <- pol_br[!((pol_br[,1]>=-38.8 & pol_br[,1]<=-38.6) &
 
 pol_nordeste <- pol_nordeste[pol_nordeste[,1]<=-34,]
 pol_nordeste <- pol_nordeste[!((pol_nordeste[,1]>=-38.7 & pol_nordeste[,1]<=-38.6) & pol_nordeste[,2]<= -15),]
-
-
 
 # Recriando o flag_nordeste
 oco2 <- oco2 |>
@@ -141,15 +144,14 @@ br |>
                       col="red",
                       alpha=0.2)
 
-
 oco2_br <- oco2 |>
   dplyr::filter( flag_br | flag_nordeste ) |>
   dplyr::select(-flag_br)
 readr::write_rds(oco2_br,"data-raw/oco2_br.rds")
-save(oco2_br, file = "data/oco2_br.rda")
+
 
 ## code to prepare `oco2` dataset goes here
-oco2_br <- readr::read_rds("data-raw//oco2_br_novo.rds")
+oco2_br <- readr::read_rds("data-raw//oco2_br.rds")
 dplyr::glimpse(oco2)
 
 oco2_br |>
@@ -164,10 +166,7 @@ get_contorno <- function(indice, lista){
     as.data.frame()
   return(obj)
 }
-contorno <- purrr::map_dfr(1:27, get_contorno, lista=mapa$geom)
-
-
-
+contorno <- purrr::map_dfr(1, get_contorno, lista=mapa$geom)
 
 typeof(contorno)
 plot(contorno)
@@ -192,19 +191,14 @@ oco2 <- oco2 |>
   mutate(flag = def_pol(longitude, latitude, contorno_br),
          flag2 = def_pol(longitude, latitude, pol_nordeste)) |>
   filter(flag|flag2) |>
-  select(-flag, -flag2)
-
-
+  select(-flag, -flag2, -(xco2:delta))
+oco2 <- oco2 |> select(-(flag_br:flag_centroeste))
+dplyr::glimpse(oco2)
 readr::write_rds(oco2,"data-raw/oco2_br.rds")
-
-
-
-
-
-
+oco2_br <- readr::read_rds("data-raw/oco2_br.rds")
+# usethis::use_data(oco2_br, overwrite = TRUE)
 
 # protótipo do Wbescrape
-
 url <- "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_weekly_mlo.txt"
 co2_nooa <- read.table(url, skip = 49, h=FALSE)
 co2_nooa |> names() <- c("year","month","day","decimal",

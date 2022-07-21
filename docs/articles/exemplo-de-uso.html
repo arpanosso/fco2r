@@ -88,19 +88,40 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/arpanosso/fco2r" class="external-link">fco2r</a></span><span class="op">)</span>
 <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/glimpse.html" class="external-link">glimpse</a></span><span class="op">(</span><span class="va">oco2_br</span><span class="op">)</span>
-<span class="co">#&gt; Rows: 146,646</span>
-<span class="co">#&gt; Columns: 11</span>
-<span class="co">#&gt; $ longitude                              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -70.33963, -70.33963, -70.33963~</span>
-<span class="co">#&gt; $ longitude_bnds                         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-70.4644097222:-70.21484375", ~</span>
-<span class="co">#&gt; $ latitude                               <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -5.806417, -5.557240, -5.058887~</span>
-<span class="co">#&gt; $ latitude_bnds                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-5.93100534001:-5.68182872924"~</span>
-<span class="co">#&gt; $ time_yyyymmddhhmmss                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.014092e+13, 2.014092e+13, 2.0~</span>
-<span class="co">#&gt; $ time_bnds_yyyymmddhhmmss               <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "20140915000000:20140916000000"~</span>
-<span class="co">#&gt; $ altitude_km                            <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3307.8, 3307.8, 3307.8, 3307.8,~</span>
-<span class="co">#&gt; $ alt_bnds_km                            <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.0:6615.59960938", "0.0:6615.~</span>
-<span class="co">#&gt; $ fluorescence_offset_relative_771nm_idp <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.0167236, 0.0187703, 0.0167454~</span>
-<span class="co">#&gt; $ fluorescence_offset_relative_757nm_idp <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.01495360, 0.01348060, 0.01151~</span>
-<span class="co">#&gt; $ xco2_moles_mole_1                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.000391583, 0.000394184, 0.000~</span></code></pre></div>
+<span class="co">#&gt; Rows: 37,387</span>
+<span class="co">#&gt; Columns: 32</span>
+<span class="co">#&gt; $ longitude                                                     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -70.5, -~</span>
+<span class="co">#&gt; $ longitude_bnds                                                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-71.0:-~</span>
+<span class="co">#&gt; $ latitude                                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -5.5, -4~</span>
+<span class="co">#&gt; $ latitude_bnds                                                 <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "-6.0:-5~</span>
+<span class="co">#&gt; $ time_yyyymmddhhmmss                                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.014091~</span>
+<span class="co">#&gt; $ time_bnds_yyyymmddhhmmss                                      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "2014090~</span>
+<span class="co">#&gt; $ altitude_km                                                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3307.8, ~</span>
+<span class="co">#&gt; $ alt_bnds_km                                                   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> "0.0:661~</span>
+<span class="co">#&gt; $ fluorescence_radiance_757nm_uncert_idp_ph_sec_1_m_2_sr_1_um_1 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7.272876~</span>
+<span class="co">#&gt; $ fluorescence_radiance_757nm_idp_ph_sec_1_m_2_sr_1_um_1        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.537127~</span>
+<span class="co">#&gt; $ xco2_moles_mole_1                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.000394~</span>
+<span class="co">#&gt; $ aerosol_total_aod                                             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.148579~</span>
+<span class="co">#&gt; $ fluorescence_offset_relative_771nm_idp                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.016753~</span>
+<span class="co">#&gt; $ fluorescence_at_reference_ph_sec_1_m_2_sr_1_um_1              <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2.615319~</span>
+<span class="co">#&gt; $ fluorescence_radiance_771nm_idp_ph_sec_1_m_2_sr_1_um_1        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 3.088582~</span>
+<span class="co">#&gt; $ fluorescence_offset_relative_757nm_idp                        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 0.013969~</span>
+<span class="co">#&gt; $ fluorescence_radiance_771nm_uncert_idp_ph_sec_1_m_2_sr_1_um_1 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 5.577878~</span>
+<span class="co">#&gt; $ xco2                                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 394.3686~</span>
+<span class="co">#&gt; $ data                                                          <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span> 2014-09~</span>
+<span class="co">#&gt; $ ano                                                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 2014, 20~</span>
+<span class="co">#&gt; $ mes                                                           <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 9, 9, 9,~</span>
+<span class="co">#&gt; $ dia                                                           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 6, 6, 6,~</span>
+<span class="co">#&gt; $ dia_semana                                                    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 7, 7, 7,~</span>
+<span class="co">#&gt; $ x                                                             <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> 7, 8, 11~</span>
+<span class="co">#&gt; $ xco2_est                                                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 392.7080~</span>
+<span class="co">#&gt; $ delta                                                         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> -1.66062~</span>
+<span class="co">#&gt; $ XCO2                                                          <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> 387.2781~</span>
+<span class="co">#&gt; $ flag_norte                                                    <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> TRUE, TR~</span>
+<span class="co">#&gt; $ flag_nordeste                                                 <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, F~</span>
+<span class="co">#&gt; $ flag_sul                                                      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, F~</span>
+<span class="co">#&gt; $ flag_sudeste                                                  <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, F~</span>
+<span class="co">#&gt; $ flag_centroeste                                               <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span> FALSE, F~</span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">oco2_br</span> |&gt; 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/sample_n.html" class="external-link">sample_n</a></span><span class="op">(</span><span class="fl">2000</span><span class="op">)</span> |&gt; 
@@ -124,7 +145,8 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a>
+2.0.2.</p>
 </div>
 
       </footer>

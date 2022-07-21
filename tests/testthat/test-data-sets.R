@@ -1,6 +1,6 @@
 test_that("numero de colunas e linhas", {
-  expect_equal(ncol(oco2_br), 11)
-  expect_equal(nrow(oco2_br), 146646)
+  expect_equal(ncol(oco2_br), 18)
+  expect_equal(nrow(oco2_br), 37387)
 
   expect_true(is.character(oco2_br$longitude_bnds))
   expect_true(is.character(oco2_br$latitude_bnds))
